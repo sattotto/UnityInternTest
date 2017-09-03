@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject Player;
+	public Text gameOverText;
+	private bool gameOver = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +19,9 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			PlayerDamaged (1);
 		}
+		if (gameOver) {
+			gameOverText.enabled = true;
+		}
 	}
 
 	void PlayerDamaged(int damage){
@@ -23,6 +29,7 @@ public class GameManager : MonoBehaviour {
 		if (getPlayerHP () <= 0) {
 			// がめおべら
 			Debug.Log ("you died!");
+			gameOver = true;
 		}
 	}
 
